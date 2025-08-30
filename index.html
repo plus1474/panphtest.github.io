@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AR.js Marker Example</title>
-    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+    <title>AR.js Test</title>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ar.js@3.4.4/aframe/build/aframe-ar-nft.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden;">
-    <!-- A-Frame シーン -->
-    <a-scene embedded arjs>
-      
-      <!-- カメラ -->
+    <a-scene
+      embedded
+      arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
+    >
+      <!-- マーカーを指定（hiroマーカーがデフォルトで使える） -->
       <a-marker preset="hiro">
-        <!-- マーカーの上に表示する3D図形 -->
         <a-box position="0 0.5 0" material="color: red;"></a-box>
       </a-marker>
 
-      <!-- マーカーが見えないときに描画するオブジェクト -->
-      <a-entity camera></a-entity>
-    </a-scene>
-  </body>
-</html>
+      <!-- カメラ -->
+      <a

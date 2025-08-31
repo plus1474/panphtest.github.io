@@ -1,28 +1,35 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>引退番パンフレット - MediaWave</title>
-    <!-- A-Frame の読み込み -->
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <!-- AR.js の読み込み -->
-    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.7.7/aframe/build/aframe-ar.js"></script>
-    <!-- 全画面用にスクロールバーなどを非表示 -->
-    <style>
-      body { margin: 0; overflow: hidden; }
-    </style>
-  </head>
-  
-  <body>
-    <!-- ARシーン -->
-    <a-scene embedded arjs>
-      <!-- ARマーカーを定義 -->
-      <a-marker preset="hiro">
-        <!-- 赤色の立方体 -->
-        <a-box position="0 0.5 0" material="color: red; transparent: true; opacity: 0.5;" depth="1" height="1" width="1"></a-box>
-      </a-marker>
-
-      <!-- マーカーが見えない時にカメラを表示 -->
-      <a-entity camera></a-entity>
-    </a-scene>
-  </body>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ARデモページ</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      margin-bottom: 30px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 8px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>ARデモへようこそ</h1>
+  <p>下のボタンを押すと、カメラを使ったAR体験が始まります。</p>
+  <a class="btn" href="ar.html">▶️ ARカメラを起動する</a>
+</body>
 </html>

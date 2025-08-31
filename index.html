@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AR.js Test - Red Cube</title>
+    <title>引退番パンフレット - MediaWave</title>
+    <!-- A-Frame の読み込み -->
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <!-- AR.js の読み込み -->
     <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.7.7/aframe/build/aframe-ar.js"></script>
+    <!-- 全画面用にスクロールバーなどを非表示 -->
     <style>
       body { margin: 0; overflow: hidden; }
     </style>
   </head>
+  
   <body>
-    <!-- ARシーン開始 -->
+    <!-- ARシーン -->
     <a-scene embedded arjs>
-      <!-- ARマーカー（hiro） -->
+      <!-- ARマーカーを定義 -->
       <a-marker preset="hiro">
         <!-- 赤色の立方体 -->
         <a-box position="0 0.5 0" material="color: red; transparent: true; opacity: 0.5;" depth="1" height="1" width="1"></a-box>
       </a-marker>
 
-      <!-- マーカーが見えない時に表示するカメラ -->
+      <!-- マーカーが見えない時にカメラを表示 -->
       <a-entity camera></a-entity>
     </a-scene>
   </body>

@@ -1,92 +1,33 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>ARカメラ</title>
-  <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/AR.js/three.js/build/ar.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <style>
-    body { margin: 0; overflow: hidden; }
-    #backBtn {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      padding: 10px 15px;
-      background: rgba(0,0,0,0.6);
-      color: white;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 14px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>ARカメラ</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        #backBtn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 10px 15px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
-  <!-- 戻るボタン -->
-  <a id="backBtn" href="index.html">← 戻る</a>
+    <a id="backBtn" href="index.html">← 戻る</a>
 
-  <script>
-    // 3Dシーンの準備
-    const scene = new THREE.Scene();
-    const camera = new THREE.Camera();
-    scene.add(camera);
-
-    // WebGLレンダラー
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
-
-    // ARToolkitのセットアップ
-    const arToolkitSource = new THREEx.ArToolkitSource({ sourceType: 'webcam' });
-
-    arToolkitSource.init(() => {
-      setTimeout(() => {
-        onResize();
-      }, 2000);
-    });
-
-    window.addEventListener('resize', onResize);
-    function onResize() {
-      arToolkitSource.onResizeElement();
-      arToolkitSource.copyElementSizeTo(renderer.domElement);
-      if (arToolkitContext.arController !== null) {
-        arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas);
-      }
-    }
-
-    const arToolkitContext = new THREEx.ArToolkitContext({
-      cameraParametersUrl: 'https://cdn.jsdelivr.net/gh/jeromeetienne/AR.js/three.js/data/camera_para.dat',
-      detectionMode: 'mono'
-    });
-
-    arToolkitContext.init(() => {
-      camera.projectionMatrix.copy(arToolkitContext.getProjectionMatrix());
-    });
-
-    // マーカー設定（hiroマーカー）
-    const markerRoot = new THREE.Group();
-    scene.add(markerRoot);
-
-    const markerControls = new THREEx.ArMarkerControls(arToolkitContext, markerRoot, {
-      type: 'pattern',
-      patternUrl: 'https://cdn.jsdelivr.net/gh/jeromeetienne/AR.js/three.js/data/patt.hiro',
-    });
-
-    // 赤い立方体
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshBasicMaterial({ color: 0xff0000, transparent: true, opacity: 0.8 });
-    const cube = new THREE.Mesh(geometry, material);
-    cube.position.y = 0.5; // マーカー上に乗せる
-    markerRoot.add(cube);
-
-    // 描画ループ
-    function animate() {
-      requestAnimationFrame(animate);
-      if (arToolkitSource.ready) {
-        arToolkitContext.update(arToolkitSource.domElement);
-      }
-      renderer.render(scene, camera);
-    }
-    animate();
-  </script>
+    <a-scene embedded arjs>
+        <a-marker preset="hiro">
+            <a-box position="0 0.5 0" material="color: red;"></a-box>
+        </a-marker>
+        <a-entity camera></a-entity>
+    </a-scene>
 </body>
 </html>

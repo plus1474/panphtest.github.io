@@ -1,0 +1,202 @@
+/* ========================
+   共通スタイル
+   ======================== */
+body {
+    font-family: sans-serif;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* ページ全体のコンテンツを囲むコンテナ */
+.container {
+    padding: 20px;
+}
+
+.section {
+    padding-top: 50px; /* ヘッダーとコンテンツが被らないように余白を追加 */
+}
+
+/* ========================
+   ヘッダーとナビゲーション
+   ======================== */
+.site-header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ナビゲーションリスト */
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* ハンバーガーボタンのスタイル */
+.hamburger-menu-btn {
+    display: none;
+    width: 30px;
+    height: 25px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.hamburger-menu-btn .line {
+    display: block;
+    height: 3px;
+    background-color: black;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+/* メニューを閉じるボタンのスタイルを追加 */
+.menu-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+    line-height: 1;
+    background: none;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    z-index: 10;
+    display: none; /* PCでは非表示 */
+}
+
+/* ========================
+   メディアクエリ (レスポンシブデザイン)
+   ======================== */
+@media (max-width: 767px) {
+    /* 767px以下 (スマホ) でのスタイル */
+    .site-title {
+        font-size: 1.5rem;
+    }
+    .hamburger-menu-btn {
+        display: flex; /* ハンバーガーボタンを表示 */
+    }
+    .main-nav {
+        display: none; /* ナビゲーションメニューを非表示 */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(255, 255, 255, 0.95);
+        padding-top: 80px;
+        text-align: center;
+        z-index: 999;
+    }
+    .main-nav.is-open {
+        display: block; /* 開いたときに表示 */
+    }
+    /* 開いたときだけ閉じるボタンを表示 */
+    .main-nav.is-open .menu-close-btn {
+        display: block;
+    }
+    .main-nav li {
+        margin-bottom: 20px;
+    }
+    .main-nav a {
+        font-size: 24px;
+        color: #333;
+        text-decoration: none;
+    }
+}
+
+@media (min-width: 768px) {
+    /* 768px以上 (PC) でのスタイル */
+    .site-title {
+        font-size: 2rem;
+    }
+    .hamburger-menu-btn {
+        display: none;
+    }
+    .main-nav {
+        display: block;
+        position: static;
+        width: auto;
+        height: auto;
+        background: none;
+    }
+    .main-nav ul {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+    .main-nav a {
+        font-size: 16px;
+        color: #333;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+    .main-nav a:hover {
+        color: #007bff;
+    }
+}
+
+/* ========================
+   ページ下部のタイトル
+   ======================== */
+.fixed-title-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 999;
+}
+
+/* ========================
+   本文（コンテンツ）
+   ======================== */
+.section .container {
+    position: relative;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+}
+
+/* 各リストのドットを消す */
+.work-list,
+.access-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.work-list li,
+.access-list li {
+    margin-bottom: 10px;
+}
+
+.section h3 {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+/* 小文字テキスト */
+.small-text {
+    font-size: 0.8em;
+}

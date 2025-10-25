@@ -10,12 +10,18 @@
     <header class="site-header">
         <div class="header-container">
             <h1 class="site-title">タイトル</h1>
-            <nav class="main-nav">
+            <button class="hamburger-menu-btn" aria-controls="main-nav" aria-expanded="false">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+            <nav id="main-nav" class="main-nav">
+                <button class="menu-close-btn" aria-label="メニューを閉じる">×</button>
                 <ul>
                     <li><a href="#about">概要</a></li>
-                    <li><a href="#schedule">タイムテーブル</a></li>
+                    <li><a href="#schedule">作品順</a></li>
                     <li><a href="#monitorsheet">モニターシート</a></li>
-                    <li><a href="#location">アクセス</a></li>
+                    <li><a href="#access">アクセス</a></li>
                     <li><a href="ar.html">ARカメラ</a></li>
                 </ul>
             </nav>
@@ -23,24 +29,16 @@
     </header>
 
     <main class="site-main">
-
         <section id="about" class="section about-section">
             <div class="container">
                 <h2>概要</h2>
                 <p>本番組発表会は21期の引退番組発表会となります。</p>
                 <div class="event-details">
-                    <p><strong>日程:</strong> 2024年12月21日</p>
-                    <p><strong>開場:</strong> 12:30</p>
-                    <p><strong>開演:</strong> 13:00</p>
-                    <p><strong>場所:</strong> 法政大学小金井キャンパス 東館E105</p>
+                    <p><strong>日程</strong> 2025年12月21日</p>
+                    <p><strong>開場</strong> 12:30</p>
+                    <p><strong>開演</strong> 13:00</p>
+                    <p><strong>会場</strong> 法政大学小金井キャンパス 東館 E105</p>
                 </div>
-            </div>
-        </section>
-
-        <section id="p5js-demo" class="section p5js-demo-section">
-            <div class="container">
-                <h2>描画デモ</h2>
-                <p>この模様は、前のページで入力した文字から生成されています。</p>
             </div>
         </section>
 
@@ -49,7 +47,7 @@
                 <h2>作品順</h2>
                 <h3>第一部</h3>
                 <ul class="work-list">
-                    <li>OP</li>
+                    <li>Opening</li>
                     <li>かきDJ「音刂 -Instrumental」</li>
                     <li>りつりつバラエティ「****」</li>
                 </ul>
@@ -68,7 +66,7 @@
                 <ul class="work-list">
                     <li>渉外バラエティ</li>
                     <li>代表・渉外長挨拶</li>
-                    <li>ED</li>
+                    <li>Ending</li>
                 </ul>
             </div>
         </section>
@@ -85,11 +83,10 @@
             </div>
         </section>
 
-        <section id="location" class="section location-section">
+        <section id="access" class="section access-section">
             <div class="container">
                 <h2>会場アクセス</h2>
-                <p>最寄駅からのアクセスはこちら</p>
-                <ul class="work-list">
+                <ul class="access-list">
                     <li>【JR線】 中央線：新宿駅から快速で21分、東小金井駅下車、徒歩約15分</li>
                     <li>【バス】 JR中央線東小金井駅北口バス乗り場より「関野橋循環〔法政大学経由〕」に乗車「法政大学」下車</li>
                     <li>【CoCoバス】 JR中央線東小金井駅北口バス乗り場(ファミリーマート前)より「北東部循環」乗車「法政大学」下車</li>
@@ -106,6 +103,31 @@
         </div>
     </footer>
 
+    <script>
+        const navBtn = document.querySelector('.hamburger-menu-btn');
+        const navMenu = document.querySelector('#main-nav');
+        const closeBtn = document.querySelector('.menu-close-btn');
+
+        function toggleMenu() {
+            const isExpanded = navBtn.getAttribute('aria-expanded') === 'true' || false;
+            navBtn.setAttribute('aria-expanded', !isExpanded);
+            navMenu.classList.toggle('is-open');
+        }
+
+        if (navBtn && navMenu && closeBtn) {
+            // 1. ハンバーガーボタンで開閉
+            navBtn.addEventListener('click', toggleMenu);
+            
+            // 2. 閉じるボタンで開閉
+            closeBtn.addEventListener('click', toggleMenu);
+            
+            // 3. メニュー項目をクリックしたときも閉じる
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', toggleMenu);
+            });
+        }
+    </script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script src="sketch.js"></script>
 </body>
